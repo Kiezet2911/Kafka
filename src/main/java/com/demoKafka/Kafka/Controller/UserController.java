@@ -35,8 +35,8 @@ public class UserController {
 
 	}
 
-	@KafkaListener(topics = "items-topic", groupId = "group-id")
-	public void listen(String mess) {
-		System.out.println("Mess: " + mess);
+	@KafkaListener(topics = "items-topic", groupId = "group-id", containerFactory = "kafkaListenerContainerFactory")
+	public void listen(JsonMessenger mess) {
+		System.out.println("Mess: " + mess.getMess());
 	}
 }
